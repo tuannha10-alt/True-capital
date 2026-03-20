@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>True Capital — M&A Advisory & Strategic Consulting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --brown-900:#2A1810;--brown-800:#3B2314;--brown-700:#5A3A28;
+  --brown-600:#6B3D2E;--brown-500:#8B5E3C;--brown-400:#A47A5A;
+  --brown-300:#C4A882;--brown-200:#D4B896;--brown-100:#E8D5BE;
+  --cream-200:#F5E6D3;--cream-100:#FAF6F0;--cream-50:#FDFBF8;
+  --font-display:'Cormorant Garamond',Georgia,serif;
+  --font-body:'DM Sans',system-ui,sans-serif;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--font-body);background:var(--cream-50);color:var(--brown-800);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 1.5rem;background:rgba(253,251,248,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(59,35,20,0.06);display:flex;align-items:center;justify-content:space-between;transition:padding 0.3s ease}
+nav.scrolled{padding:0.7rem 1.5rem}
+.nav-logo{font-family:var(--font-display);font-size:1.35rem;font-weight:600;color:var(--brown-800);letter-spacing:-0.02em;text-decoration:none}
+.nav-links{display:none;gap:2rem;list-style:none}
+.nav-links a{font-size:0.82rem;font-weight:500;color:var(--brown-500);text-decoration:none;letter-spacing:0.04em;text-transform:uppercase;transition:color 0.2s}
+.nav-links a:hover{color:var(--brown-800)}
+.nav-menu-btn{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:4px}
+.nav-menu-btn span{display:block;width:22px;height:1.5px;background:var(--brown-700);transition:all 0.3s ease}
+.mobile-menu{position:fixed;inset:0;z-index:99;background:var(--cream-50);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;opacity:0;pointer-events:none;transition:opacity 0.35s ease}
+.mobile-menu.open{opacity:1;pointer-events:all}
+.mobile-menu a{font-family:var(--font-display);font-size:2rem;font-weight:400;color:var(--brown-700);text-decoration:none;transition:color 0.2s}
+.mobile-menu a:hover{color:var(--brown-900)}
+.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:6rem 1.5rem 4rem;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-20%;right:-30%;width:70vw;height:70vw;border-radius:50%;background:radial-gradient(circle,rgba(212,184,150,0.15) 0%,transparent 70%);pointer-events:none}
+.hero-eyebrow{font-size:0.75rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--brown-400);margin-bottom:1.5rem;display:flex;align-items:center;gap:0.75rem}
+.hero-eyebrow::before{content:'';display:block;width:2rem;height:1px;background:var(--brown-300)}
+.hero h1{font-family:var(--font-display);font-size:clamp(2.6rem,8vw,5rem);font-weight:400;line-height:1.1;color:var(--brown-900);letter-spacing:-0.03em;max-width:14ch;margin-bottom:1.5rem}
+.hero h1 em{font-style:italic;color:var(--brown-600)}
+.hero-sub{font-size:1.05rem;color:var(--brown-500);max-width:38ch;line-height:1.7;margin-bottom:2.5rem}
+.hero-cta{display:inline-flex;align-items:center;gap:0.6rem;font-size:0.82rem;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--brown-800);text-decoration:none;padding:0.9rem 1.8rem;border:1px solid var(--brown-300);border-radius:2px;transition:all 0.3s ease}
+.hero-cta:hover{background:var(--brown-800);color:var(--cream-100);border-color:var(--brown-800)}
+.hero-cta svg{width:14px;height:14px;transition:transform 0.3s ease}
+.hero-cta:hover svg{transform:translateX(3px)}
+.divider{width:3rem;height:1px;background:var(--brown-300);margin:0 auto}
+section{padding:5rem 1.5rem}
+.section-label{font-size:0.72rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--brown-400);margin-bottom:1rem}
+.section-heading{font-family:var(--font-display);font-size:clamp(1.8rem,5vw,2.8rem);font-weight:400;color:var(--brown-900);letter-spacing:-0.02em;line-height:1.2;margin-bottom:1.5rem}
+.about{background:var(--cream-50)}
+.about-text{font-size:1rem;color:var(--brown-600);line-height:1.8;max-width:60ch}
+.about-text+.about-text{margin-top:1rem}
+.counters{background:var(--brown-900);padding:4rem 1.5rem;display:grid;grid-template-columns:1fr 1fr;gap:2.5rem}
+.counter-item{text-align:center}
+.counter-value{font-family:var(--font-display);font-size:clamp(2.4rem,6vw,3.4rem);font-weight:400;color:var(--cream-200);letter-spacing:-0.03em;line-height:1}
+.counter-label{font-size:0.78rem;color:var(--brown-400);margin-top:0.5rem;letter-spacing:0.04em}
+.story{background:var(--cream-100)}
+.story-intro{font-size:1.05rem;color:var(--brown-500);line-height:1.8;max-width:55ch;margin-bottom:3rem}
+.story-grid{display:flex;flex-direction:column;gap:3rem}
+.story-row{display:flex;flex-direction:column;gap:2rem}
+.story-pain{background:var(--cream-50);border-left:3px solid var(--brown-200);padding:1.5rem;border-radius:0 4px 4px 0}
+.story-pain-label{font-size:0.7rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--brown-400);margin-bottom:0.5rem}
+.story-pain-text{font-family:var(--font-display);font-size:1.15rem;font-style:italic;color:var(--brown-700);line-height:1.5}
+.story-answer{padding:1.5rem;background:var(--brown-900);border-radius:4px}
+.story-answer-label{font-size:0.7rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--brown-300);margin-bottom:0.5rem}
+.story-answer-text{font-size:0.95rem;color:var(--cream-200);line-height:1.7}
+.story-profile{margin-top:3rem;padding-top:3rem;border-top:1px solid rgba(59,35,20,0.08);display:flex;flex-direction:column;gap:1.5rem}
+.story-profile-header{display:flex;align-items:center;gap:1.5rem}
+.story-avatar{width:100px;height:100px;border-radius:50%;object-fit:cover;background:var(--brown-200);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:2rem;font-weight:500;color:var(--brown-700);flex-shrink:0;overflow:hidden}
+.story-avatar img{width:100%;height:100%;object-fit:cover}
+.story-name{font-family:var(--font-display);font-size:1.5rem;font-weight:500;color:var(--brown-900);letter-spacing:-0.01em}
+.story-role{font-size:0.8rem;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--brown-400);margin-top:0.2rem}
+.story-bio{font-size:0.95rem;color:var(--brown-600);line-height:1.8;max-width:55ch}
+.story-tags{display:flex;gap:0.8rem;flex-wrap:wrap;margin-top:0.5rem}
+.story-tag{font-size:0.78rem;font-weight:500;color:var(--brown-500);padding:0.35rem 0.8rem;border:1px solid rgba(59,35,20,0.1);border-radius:2px;letter-spacing:0.02em}
+.story-photos{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem}
+.story-photo{width:100%;aspect-ratio:4/3;background:var(--brown-200);border-radius:4px;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:0.75rem;color:var(--brown-500);text-align:center;padding:1rem}
+.story-photo img{width:100%;height:100%;object-fit:cover}
+.services{background:var(--brown-900);color:var(--cream-200)}
+.services .section-label{color:var(--brown-300)}
+.services .section-heading{color:var(--cream-100)}
+.services-grid{display:grid;gap:1px;margin-top:2.5rem;background:rgba(212,184,150,0.08)}
+.service-card{background:var(--brown-900);padding:2rem 0;border-bottom:1px solid rgba(212,184,150,0.1);display:flex;gap:1.2rem;align-items:flex-start}
+.service-card:last-child{border-bottom:none}
+.service-num{font-family:var(--font-display);font-size:0.9rem;color:var(--brown-400);flex-shrink:0;margin-top:0.15rem}
+.service-title{font-family:var(--font-display);font-size:1.3rem;font-weight:500;color:var(--cream-100);margin-bottom:0.6rem;letter-spacing:-0.01em}
+.service-desc{font-size:0.88rem;color:var(--brown-300);line-height:1.7;max-width:50ch}
+.contact{background:var(--cream-100)}
+.contact-body{margin-top:1rem}
+.contact-text{font-size:1rem;color:var(--brown-500);line-height:1.7;max-width:50ch;margin-bottom:2.5rem}
+.contact-info{display:flex;flex-direction:column;gap:1.2rem}
+.contact-row{display:flex;align-items:center;gap:0.8rem;font-size:0.92rem;color:var(--brown-700)}
+.contact-row svg{width:18px;height:18px;color:var(--brown-400);flex-shrink:0}
+.contact-row a{color:var(--brown-700);text-decoration:none;border-bottom:1px solid transparent;transition:border-color 0.2s}
+.contact-row a:hover{border-bottom-color:var(--brown-400)}
+footer{padding:2.5rem 1.5rem;text-align:center;border-top:1px solid rgba(59,35,20,0.06);background:var(--cream-50)}
+.footer-logo{font-family:var(--font-display);font-size:1.1rem;font-weight:600;color:var(--brown-800);letter-spacing:-0.02em}
+.footer-legal{font-size:0.72rem;color:var(--brown-400);margin-top:0.6rem;letter-spacing:0.02em}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-d1{transition-delay:0.1s}.reveal-d2{transition-delay:0.2s}.reveal-d3{transition-delay:0.3s}.reveal-d4{transition-delay:0.4s}
+@media(min-width:640px){
+  .counters{grid-template-columns:repeat(4,1fr)}
+  .story-row{flex-direction:row;align-items:stretch}
+  .story-pain,.story-answer{flex:1}
+}
+@media(min-width:768px){
+  nav{padding:1.2rem 3rem}nav.scrolled{padding:0.8rem 3rem}
+  .nav-links{display:flex}.nav-menu-btn{display:none}
+  section{padding:6rem 3rem}.hero{padding:8rem 3rem 6rem}
+  .hero h1{font-size:clamp(3rem,6vw,4.5rem)}
+  .counters{padding:5rem 3rem}footer{padding:3rem 3rem}
+}
+@media(min-width:1024px){
+  nav{padding:1.2rem 5rem}nav.scrolled{padding:0.8rem 5rem}
+  section{padding:7rem 5rem}.hero{padding:10rem 5rem 8rem}
+  .about-inner{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+  .counters{padding:5rem}
+  .services-grid{grid-template-columns:1fr 1fr;gap:0 3rem}
+  .service-card{padding:2rem 0;border-bottom:1px solid rgba(212,184,150,0.1)}
+  .story-profile{flex-direction:row;gap:3rem;align-items:flex-start}
+  .story-profile-right{flex:1}
+  .contact-layout{display:grid;grid-template-columns:1fr 1fr;gap:4rem}
+  footer{padding:3rem 5rem}
+}
+</style>
+</head>
+<body>
+<nav id="nav">
+  <a href="#" class="nav-logo">True Capital</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#story">Team</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-menu-btn" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="toggleMenu()">About</a>
+  <a href="#story" onclick="toggleMenu()">Team</a>
+  <a href="#services" onclick="toggleMenu()">Services</a>
+  <a href="#contact" onclick="toggleMenu()">Contact</a>
+</div>
+<section class="hero">
+  <div class="hero-eyebrow reveal">Capital Raising · Strategic Advisory · M&A</div>
+  <h1 class="reveal reveal-d1">Your partner from <em>first raise</em> to lasting growth</h1>
+  <p class="hero-sub reveal reveal-d2">We walk alongside Vietnamese business owners through their most important financial milestones — bringing hands-on experience from both sides of the table.</p>
+  <a href="#contact" class="hero-cta reveal reveal-d3">Start a conversation <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+</section>
+<div class="divider"></div>
+<section class="about" id="about">
+  <div class="about-inner">
+    <div>
+      <div class="section-label reveal">About</div>
+      <h2 class="section-heading reveal reveal-d1">We've been where<br>you are</h2>
+      <p class="about-text reveal reveal-d2">True Capital is a boutique advisory firm built for Vietnamese SME owners navigating capital raising, strategic growth, and M&A for the first time. We know these moments are high-stakes and unfamiliar — because we've sat in the operator's chair ourselves, not just the advisor's.</p>
+      <p class="about-text reveal reveal-d3">We stay hands-on from the first conversation through closing. No handoffs, no generic playbooks — just practical guidance grounded in real transaction experience and genuine care for your outcome.</p>
+    </div>
+  </div>
+</section>
+<div class="counters" id="counters">
+  <div class="counter-item reveal">
+    <div class="counter-value"><span data-target="200" data-prefix="$" data-suffix="M+">$0</span></div>
+    <div class="counter-label">Transaction value advised</div>
+  </div>
+  <div class="counter-item reveal reveal-d1">
+    <div class="counter-value"><span data-target="13" data-suffix="+">0</span></div>
+    <div class="counter-label">Years in finance</div>
+  </div>
+  <div class="counter-item reveal reveal-d2">
+    <div class="counter-value"><span data-target="10" data-suffix="+">0</span></div>
+    <div class="counter-label">Deals completed</div>
+  </div>
+  <div class="counter-item reveal reveal-d3">
+    <div class="counter-value"><span data-target="100" data-suffix="%">0</span></div>
+    <div class="counter-label">Referral-based</div>
+  </div>
+</div>
+<section class="story" id="story">
+  <div class="section-label reveal">Why we exist</div>
+  <h2 class="section-heading reveal reveal-d1">We built True Capital for founders<br>who deserve better</h2>
+  <p class="story-intro reveal reveal-d2">Too many Vietnamese business owners face their most important financial decisions without the right support. We've seen it firsthand — and it's why we do what we do.</p>
+  <div class="story-grid">
+    <div class="story-row reveal">
+      <div class="story-pain">
+        <div class="story-pain-label">The struggle</div>
+        <div class="story-pain-text">"I want to raise capital, but I don't even know where to start — who to talk to, what to prepare, or what my company is worth."</div>
+      </div>
+      <div class="story-answer">
+        <div class="story-answer-label">Our approach</div>
+        <div class="story-answer-text">We start from the very beginning — helping you understand valuation, build the right materials, and prepare your story before a single investor meeting. No jargon, no assumptions.</div>
+      </div>
+    </div>
+    <div class="story-row reveal reveal-d1">
+      <div class="story-pain">
+        <div class="story-pain-label">The struggle</div>
+        <div class="story-pain-text">"I've spent months meeting investors who weren't serious. I'm exhausted and my business is suffering from the distraction."</div>
+      </div>
+      <div class="story-answer">
+        <div class="story-answer-label">Our approach</div>
+        <div class="story-answer-text">We screen investors before you meet them — filtering for genuine interest, sector fit, and ticket size. Your time is spent only with people who are ready to move.</div>
+      </div>
+    </div>
+    <div class="story-row reveal reveal-d2">
+      <div class="story-pain">
+        <div class="story-pain-label">The struggle</div>
+        <div class="story-pain-text">"I feel alone in this. My accountant doesn't understand deals, my lawyer just reviews papers, and I have no one who sees the full picture."</div>
+      </div>
+      <div class="story-answer">
+        <div class="story-answer-label">Our approach</div>
+        <div class="story-answer-text">We become your trusted partner through the entire journey — from strategy to closing. One person who understands your business, your goals, and the deal mechanics. You're never alone in the room.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-profile reveal reveal-d3">
+    <div>
+      <div class="story-profile-header">
+        <div class="story-avatar"><img src="profile.jpg" alt="Nguyen Tuan Nha"></div>
+        <div>
+          <div class="story-name">Nguyen Tuan Nha</div>
+          <div class="story-role">Founder & Managing Director</div>
+        </div>
+      </div>
+    </div>
+    <div class="story-profile-right">
+      <p class="story-bio">13+ years across investment banking, corporate finance, and operator roles. Nha has raised capital, closed M&A deals, and sat inside the companies doing the hard work of growth. That firsthand understanding shapes how he advises: practically, patiently, and always with the business owner's interests at the center.</p>
+      <div class="story-tags">
+        <span class="story-tag">MoMo</span>
+        <span class="story-tag">Asia Group</span>
+        <span class="story-tag">EY</span>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="services" id="services">
+  <div class="section-label reveal">Services</div>
+  <h2 class="section-heading reveal reveal-d1">How we help</h2>
+  <div class="services-grid">
+    <div class="service-card reveal reveal-d1">
+      <span class="service-num">01</span>
+      <div>
+        <div class="service-title">Capital Raising</div>
+        <div class="service-desc">Whether it's your first fundraise or a growth-stage round, we guide you through the entire journey — from preparing your story and materials to connecting with the right investors and negotiating terms that protect your interests.</div>
+      </div>
+    </div>
+    <div class="service-card reveal reveal-d2">
+      <span class="service-num">02</span>
+      <div>
+        <div class="service-title">Strategic Advisory</div>
+        <div class="service-desc">Practical, hands-on advisory for business owners at an inflection point — whether you're preparing for a major transaction, rethinking your growth roadmap, or positioning your company for its next chapter.</div>
+      </div>
+    </div>
+    <div class="service-card reveal reveal-d3">
+      <span class="service-num">03</span>
+      <div>
+        <div class="service-title">M&A Advisory</div>
+        <div class="service-desc">End-to-end support for acquisitions, divestitures, and mergers. We handle everything from valuation and due diligence to negotiation and closing — so you can focus on running your business.</div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="contact" id="contact">
+  <div class="contact-layout">
+    <div>
+      <div class="section-label reveal">Contact</div>
+      <h2 class="section-heading reveal reveal-d1">Let's talk</h2>
+      <p class="contact-text reveal reveal-d2">If you're thinking about raising capital, exploring a transaction, or simply want a sounding board — we're happy to listen. No commitment, no pressure. Just a conversation.</p>
+    </div>
+    <div class="contact-body">
+      <div class="contact-info">
+        <div class="contact-row reveal reveal-d2">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="2" y="4" width="16" height="12" rx="2"/><path d="M2 6l8 5 8-5"/></svg>
+          <a href="mailto:nha@truecapital.asia">nha@truecapital.asia</a>
+        </div>
+        <div class="contact-row reveal reveal-d3">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3 5c0-1.1.9-2 2-2h10a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"/><path d="M7 9h6M7 12h4"/></svg>
+          <span>Ho Chi Minh City, Vietnam</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="footer-logo">True Capital</div>
+  <div class="footer-legal">Công ty TNHH True Capital · All rights reserved</div>
+</footer>
+<script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>40)});
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open')}
+const revealObs=new IntersectionObserver(e=>{e.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revealObs.unobserve(e.target)}})},{threshold:0.15});
+document.querySelectorAll('.reveal').forEach(el=>revealObs.observe(el));
+let countersDone=false;
+const counterObs=new IntersectionObserver(e=>{e.forEach(e=>{if(e.isIntersecting&&!countersDone){countersDone=true;document.querySelectorAll('[data-target]').forEach(el=>{const t=+el.dataset.target,p=el.dataset.prefix||'',s=el.dataset.suffix||'',d=1800,st=performance.now();function u(n){const e=n-st,pr=Math.min(e/d,1),ea=1-Math.pow(1-pr,3),c=Math.round(t*ea);el.textContent=p+c+s;if(pr<1)requestAnimationFrame(u)}requestAnimationFrame(u)})}})},{threshold:0.3});
+counterObs.observe(document.getElementById('counters'));
+</script>
+</body>
+</html>
